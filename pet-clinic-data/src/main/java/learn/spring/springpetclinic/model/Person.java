@@ -7,23 +7,23 @@ import javax.persistence.MappedSuperclass;
 public class Person extends BaseEntity {
 
     @Column(name = "first_name") // thsi is the default column name anyway
-    private String firstname;
+    private String firstName;
     @Column(name = "last_name")
-    private String lastname;
+    private String lastName;
 
     public String getFirstname() {
-        return firstname;
+        return firstName;
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstName = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastname) {
+        this.lastName = lastname;
     }
 }
