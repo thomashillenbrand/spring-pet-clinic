@@ -11,11 +11,11 @@ public class Person extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstName(String firstname) {
         this.firstName = firstname;
     }
 
