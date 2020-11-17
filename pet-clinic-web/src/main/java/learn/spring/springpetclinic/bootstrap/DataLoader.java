@@ -5,10 +5,12 @@ import learn.spring.springpetclinic.model.Pet;
 import learn.spring.springpetclinic.model.PetType;
 import learn.spring.springpetclinic.model.Specialty;
 import learn.spring.springpetclinic.model.Vet;
+import learn.spring.springpetclinic.model.Visit;
 import learn.spring.springpetclinic.services.OwnerService;
 import learn.spring.springpetclinic.services.PetTypeService;
 import learn.spring.springpetclinic.services.SpecialtyService;
 import learn.spring.springpetclinic.services.VetService;
+import learn.spring.springpetclinic.services.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,18 +23,21 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         int count = petTypeService.findAll().size();
-        if(count == 0) loadData();
+        if (count == 0) loadData();
         else System.out.println("Bootstrap data already loaded");
     }
 
@@ -78,6 +83,12 @@ public class DataLoader implements CommandLineRunner {
 
         owner2.getPets().add(fionnasPet);
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionnasPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Cat");
+        visitService.save(catVisit);
 
         System.out.println("Loaded owners . . . ");
 
