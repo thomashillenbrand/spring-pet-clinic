@@ -103,7 +103,7 @@ class OwnerControllerTest {
     void initCreationForm() throws Exception {
         mockMvc.perform(get("/owners/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/createOrUpdateForm"))
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"))
                 .andExpect(model().attributeExists("owner"));
 
         verifyNoInteractions(ownerService);
@@ -129,7 +129,7 @@ class OwnerControllerTest {
         // then perform a get on the edit page
         mockMvc.perform(get("/owners/1/edit"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/createOrUpdateForm"))
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"))
                 .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
 
         verify(ownerService).findById(anyLong());
